@@ -9,3 +9,7 @@
   * git reset --hard HEAD^^ 等同于git reset --hard HEAD2 -回退到上上一个版本
   * git reset --hard 6c1f1  -表示hard + commit的id号（至少4位），根据id号回退到指定版本
 * <b>git status</b> -查看当前工作状态
+
+url:https://www.liaoxuefeng.com/wiki/896043488029600/897271968352576
+git add .
+git commit -m 'update Note.md'
