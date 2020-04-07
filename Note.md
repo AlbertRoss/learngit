@@ -1,6 +1,6 @@
 * <b>git init</b> -初始化一个Git仓库，初始完会产生一个.git文件，默认看不到，想要查看，可以输入命令<b>ls -ah</b>来查看
 * <b>git add readme.txt</b>  -表示暂存所有新增的readme.txt文件，可以空格分开添加多个文件，实际上就是把文件修改添加到暂存区；
-* <b>git add .</b>    -表示暂存所有新增文件
+* <b>git add .</b>    -表示暂存所有新增文件，实际上就是把文件修改添加到暂存区；
 * <b>git commit -m "描述文字"</b> -提交文本并填写描述信息，提交更改，实际上就是把暂存区的所有内容提交到当前分支。
 * <b>git log</b> -命令显示从最近到最远的提交日志，如果嫌输出信息太多，可以加上--pretty=oneline参数：即<b>git log --pretty=oneline</b>，可以看到GIT的commit的id和commit是的文本信息
 * <b>git relog</b> -命令显示从最近到最远的命令历史提交记录
