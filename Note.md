@@ -10,9 +10,23 @@
   * git reset --hard 6c1f1  -表示hard + commit的id号（至少4位），根据id号回退到指定版本
 * <b>git status</b> -查看当前工作状态
 
-场景案例：如果修改的readme.txt之后，执行`git add readme.txt`，再修改readme.txt再执行`git commit -m 'git tracks changes' `，用`git status`查看发现只有第一个修改的提交了，第二次修改的没有提交，只是因为只要增加到了缓存区（执行了git add）才可以被提交。解决方法：你可以继续`git add`再`git commit`，也可以别着急提交第一次修改，先`git add`第二次修改，再`git commit`，就相当于把两次修改合并后一块提交了：
+<b>场景案例</b>：如果修改的readme.txt之后，执行`git add readme.txt`，再修改readme.txt再执行`git commit -m 'git tracks changes' `，用`git status`查看发现只有第一个修改的提交了，第二次修改的没有提交，只是因为只要增加到了缓存区（执行了git add）才可以被提交。解决方法：你可以继续`git add`再`git commit`，也可以别着急提交第一次修改，先`git add`第二次修改，再`git commit`，就相当于把两次修改合并后一块提交了：
 
 第一次修改 -> `git add` -> 第二次修改 -> `git add` -> `git commit`
+
+* <b>git checkout -- 文件名</b>  -如`git checkout -- readme.txt`把`readme.txt`文件在工作区的修改全部撤销，这里有两种情况：
+
+  一种是`readme.txt`自修改后还没有被放到暂存区，现在，撤销修改就回到和版本库一模一样的状态；
+
+  一种是`readme.txt`已经添加到暂存区后，又作了修改，现在，撤销修改就回到添加到暂存区后的状态。
+
+  总之，就是让这个文件回到最近一次`git commit`或`git add`时的状态。
+
+  <b>撤销修改场景</b>
+
+<b>场景1：</b>当你改乱了工作区某个文件的内容，想直接丢弃工作区的修改时，用命令`git checkout -- file`。
+
+<b>场景2：</b>当你不但改乱了工作区某个文件的内容，还添加到了暂存区时，想丢弃修改，分两步，第一步用命令`git reset HEAD `，就回到了场景1，第二步按场景1操作。
 
 
 
