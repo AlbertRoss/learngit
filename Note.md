@@ -22,14 +22,33 @@
 
   总之，就是让这个文件回到最近一次`git commit`或`git add`时的状态。
 
-  <b>撤销修改场景</b>
+<b>撤销修改场景</b>
 
 <b>场景1：</b>当你改乱了工作区某个文件的内容，想直接丢弃工作区的修改时，用命令`git checkout -- file`。
 
 <b>场景2：</b>当你不但改乱了工作区某个文件的内容，还添加到了暂存区时，想丢弃修改，分两步，第一步用命令`git reset HEAD `，就回到了场景1，第二步按场景1操作。
 
+<b>删除文件的场景</b>
 
+<b>场景1：</b>确实要从版本库中删除文件，用命令`git rm 文件名`,并且`git commit -m '说明'`即可。
 
-url:https://www.liaoxuefeng.com/wiki/896043488029600/897271968352576
-git add .
-git commit -m 'update Note.md'
+<b>场景2：</b>删错了，因为版本库里还有呢，所以可以很轻松地把误删的文件恢复到最新版本：用`git checkout -- 文件名`，其实就是用版本库里的版本替换工作区的版本
+
+<b>本地创建SSH Key</b>
+
+为了连接远程仓库，第一步：需要本地创建SSH Key，在根目录中输入
+
+ `ssh-keygen -t rsa -C "email地址"`
+
+一路回撤，使用默认值即可。可以在用户主目录里找到`.ssh`目录，里面有`id_rsa`和`id_rsa.pub`两个文件，这两个就是SSH Key的秘钥对，`id_rsa`是私钥，不能泄露出去，`id_rsa.pub`是公钥，可以放心地告诉任何人。第二步：登陆GitHub，打开“Account settings”，“SSH Keys”页面：然后，点“Add SSH Key”，填上任意Title，在Key文本框里粘贴`id_rsa.pub`文件的内容：
+
+<b>添加远程库</b>
+
+要关联一个远程库，使用命令
+
+`git remote add origin git@github.com:AlbertRoss/learngit.git`
+
+关联后，使用命令`git push -u origin master`第一次推送master分支的所有内容；
+
+此后，每次本地提交后，只要有必要，就可以使用命令`git push origin master`推送最新修改即可；
+
