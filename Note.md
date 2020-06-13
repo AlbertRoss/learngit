@@ -40,7 +40,7 @@
 
  `ssh-keygen -t rsa -C "email地址"`
 
-一路回撤，使用默认值即可。可以在用户主目录里找到`.ssh`目录，里面有`id_rsa`和`id_rsa.pub`两个文件，这两个就是SSH Key的秘钥对，`id_rsa`是私钥，不能泄露出去，`id_rsa.pub`是公钥，可以放心地告诉任何人。第二步：登陆GitHub，打开“Account settings”，“SSH Keys”页面：然后，点“Add SSH Key”，填上任意Title，在Key文本框里粘贴`id_rsa.pub`文件的内容：
+一路回车，使用默认值即可。可以在用户主目录里找到`.ssh`目录，里面有`id_rsa`和`id_rsa.pub`两个文件，这两个就是SSH Key的秘钥对，`id_rsa`是私钥，不能泄露出去，`id_rsa.pub`是公钥，可以放心地告诉任何人。第二步：登陆GitHub，打开“Account settings”，“SSH Keys”页面：然后，点“Add SSH Key”，填上任意Title，在Key文本框里粘贴`id_rsa.pub`文件的内容：
 
 <b>添加远程库</b>
 
@@ -60,3 +60,37 @@
 
 `ls` 查看项目中全部文件
 
+<h5>创建与合并分支</h5>
+
+* <b>git branch</b> -查看所有分支
+
+* <b>git branch <name></b>  -创建名字为name的分支
+
+* <b>git switch <name> 或者 git checkout <name> </b> -切换到name分支，使用switch更科学
+
+* <b>git switch -c <name> 或者 git checkout -b <name> </b> -创建+切换分支
+
+* <b>git merge <name></b> -合并某分支到当前分支
+
+* <b>git branch -d <name></b> -删除分支
+
+  合并分支时注意：上面的`Fast-forward`信息，Git告诉我们，这次合并是“快进模式”，也就是直接把`master`指向`dev`的当前提交，所以合并速度非常快。当然，也不是每次合并都能`Fast-forward`。
+
+<h5>解决冲突问题</h5>
+
+在feature1分支上提交 Creating a new branch is quick AND simple.
+
+在master分支上提交Creating a new branch is quick & simple.
+
+ 可以使用<b>git status</b>查看冲突的问题，然后打开文件进行修改，Git用`<<<<<<<`，`=======`，`>>>>>>>`标记出不同分支的内容，<<<和===之间的为当前更改的内容，===和>>>之间的内容为分支中更改的内容，删除这样标签，然后剩下最终要提交的内容，如‘Creating a new branch is quick and simple.’，确定好内容了再执行提交：git add readme.txt     git commit -m 'conflict fixed' 即可。
+
+可以使用带参数的<b>git log</b>查看分支合并情况
+
+* <b>git log --graph --pretty=oneline --abbrev-commit</b> -查看分支提交记录，带hash码和commit文本。
+* <b>git log --graph</b> -可以看到分支合并图。
+
+<h5>分支管理策略</h5>
+
+Git会用`Fast forward`模式，但这种模式下，删除分支后，会丢掉分支信息。
+
+如果要强制禁用`Fast forward`模式，Git就会在merge时生成一个新的commit，这样，从分支历史上就可以看出分支信息。
